@@ -78,7 +78,7 @@ cat << EOF > ${DEPLOYMENT_FILE}
     "revision": {
         "revisionType": "S3",
         "s3Location": {
-            "bucket": "${bucketName}/${applicationName}/${SPEC_FILE}",
+            "bucket": "${bucketName}/${applicationName}",
             "key": "${SPEC_FILE}",
             "bundleType": "YAML"
         }
