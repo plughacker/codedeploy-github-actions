@@ -62,7 +62,7 @@ EOF
 }
 
 move_spec_file_to_s3(){
-    aws s3 mv ${SPEC_FILE} s3://${bucketName}
+    aws s3 mv ${SPEC_FILE} s3://${bucketName}/${applicationName}/${SPEC_FILE}
 
     if [ "${?}" -ne 0 ]; then
         echo "[+] Failed to move ${SPEC_FILE} to bucket ${bucketName}"
@@ -78,7 +78,7 @@ cat << EOF > ${DEPLOYMENT_FILE}
     "revision": {
         "revisionType": "S3",
         "s3Location": {
-            "bucket": "${bucketName}",
+            "bucket": "${bucketName}/${applicationName}/${SPEC_FILE}",
             "key": "${SPEC_FILE}",
             "bundleType": "YAML"
         }
