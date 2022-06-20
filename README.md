@@ -11,25 +11,31 @@ Code Deploy GitHub Actions.
 ```hcl
 on: [push]
 
+
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Code Deploy'
     runs-on: ubuntu-latest
     steps:
-      - name: Terraform init
+      - name: Code deploy
         uses: plughacker/codedeploy-github-actions@main
         with:
-          tf_version: 1.0.6
-          tg_command: 'init'
-          tg_working_dir: '.'
-          git_ssh_key:  ${{ secrets.git_ssh_key }}
+          container_name: ms-test
+          container_port: 5000
+          application_name: ms-test-app
+          deployment_group_name: ms-test-app-dp
+          bucket_name: ms-test-bk
+          region: us-east-1
 ```
 
 ## Inputs
 
 | Input name     | Description                                         | Required |
 |----------------|-----------------------------------------------------|----------|
-| tf_version     | The terraform version to install and execute        | Yes      |
-| tf_command     | The terraform command to execute                   | Yes      |
-| tf_working_dir | The working directory to execute terraform commands| Yes      |
-| git_ssh_key    | The SSH Key to clone terraform modules              | NO       |
+| container_name           | The name of the ECS container             | Yes      |
+| container_port           | The port of the ECS container             | Yes      |
+| application_name         | The name of the Code Deploy               | Yes      |
+| deployment_group_name    | The name of the Code Deploy group name    | Yes      |
+| bucket_name              | The name of the bucket                    |          |
+| region                   | AWS Region                                |          |
+
