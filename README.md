@@ -13,7 +13,7 @@ on: [push]
 
 
 jobs:
-  terraform:
+  code_deploy:
     name: 'Code Deploy'
     runs-on: ubuntu-latest
     steps:
